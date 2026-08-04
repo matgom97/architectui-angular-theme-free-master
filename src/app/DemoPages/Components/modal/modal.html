@@ -1,0 +1,144 @@
+
+<div
+  class="modal fade"
+  id="creditoModal"
+  tabindex="-1"
+  aria-labelledby="creditoModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="creditoModalLabel">
+          Solicitud de Crédito
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+
+      <!-- Body -->
+      <form [formGroup]="form" (ngSubmit)="guardar()">
+
+        <div class="modal-body">
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Cédula</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="cedula">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('cedula')?.touched && form.get('cedula')?.invalid">
+                La cédula es obligatoria.
+              </small>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Nombres</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="nombres">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('nombres')?.touched && form.get('nombres')?.invalid">
+                Los nombres son obligatorios.
+              </small>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Apellidos</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="apellidos">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('apellidos')?.touched && form.get('apellidos')?.invalid">
+                Los apellidos son obligatorios.
+              </small>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Plazo (Meses)</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="plazo">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('plazo')?.touched && form.get('plazo')?.invalid">
+                El plazo es obligatorio.
+              </small>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tasa de Interés (%)</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="tasaInteres">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('tasaInteres')?.touched && form.get('tasaInteres')?.invalid">
+                La tasa es obligatoria.
+              </small>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Valor del Crédito</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="valorCredito">
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('valorCredito')?.touched && form.get('valorCredito')?.invalid">
+                El valor es obligatorio.
+              </small>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="form.invalid">
+            Guardar
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,222 @@
+<style>
+.modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.modal-container{
+    width: 800px;
+    max-width: 95%;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+    animation: aparecer .25s ease;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.modal-header{
+    background:#3f6ad8;
+    color:#fff;
+    padding:18px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-header h4{
+    margin:0;
+    font-size:22px;
+}
+
+.close-btn{
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.form-control{
+    width:100%;
+    border-radius:8px;
+    border:1px solid #ced4da;
+    padding:10px;
+}
+
+.text-danger{
+    font-size:12px;
+}
+
+.modal-footer{
+    padding:20px;
+    border-top:1px solid #eee;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+</style>
+
+<div class="modal-overlay">
+
+    <div class="modal-container">
+
+        <div class="modal-header">
+            <h4>Solicitud de Crédito</h4>
+
+            <button
+                class="close-btn"
+                type="button"
+                (click)="cerrarModal()">
+                ×
+            </button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="guardar()">
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-6 form-group">
+                        <label>Cédula</label>
+
+                        <input
+                            class="form-control"
+                            formControlName="cedula">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('cedula')?.touched && form.get('cedula')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Nombres</label>
+
+                        <input
+                            class="form-control"
+                            formControlName="nombres">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('nombres')?.touched && form.get('nombres')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Apellidos</label>
+
+                        <input
+                            class="form-control"
+                            formControlName="apellidos">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('apellidos')?.touched && form.get('apellidos')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Plazo</label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="plazo">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('plazo')?.touched && form.get('plazo')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Tasa de interés (%)</label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="tasaInteres">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('tasaInteres')?.touched && form.get('tasaInteres')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Valor del crédito</label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="valorCredito">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="form.get('valorCredito')?.touched && form.get('valorCredito')?.invalid">
+                            Campo obligatorio
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cerrarModal()">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
